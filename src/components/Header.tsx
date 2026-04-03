@@ -58,8 +58,8 @@ export function Header({ initialName }: HeaderProps) {
   }
 
   return (
-    <header className="w-full px-8 py-4 flex items-center justify-center border-b border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-zinc-950/50 backdrop-blur-md sticky top-0 z-30">
-      <div className="flex items-center justify-center w-full relative group">
+    <header className="w-full px-4 md:px-8 py-4 flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-zinc-950/50 backdrop-blur-md sticky top-0 z-30">
+      <div className="flex items-center justify-between w-full group">
         {isEditing ? (
           <div className="flex items-center gap-2">
             <input
@@ -91,35 +91,46 @@ export function Header({ initialName }: HeaderProps) {
           </div>
         ) : (
           <>
-            {mounted && (
-              <span 
-                className="absolute left-0 md:hidden font-sans font-bold text-xl transition-colors select-none" 
-                style={{ color: 'var(--custom-dash-text, inherit)' }}
+            <div className="flex items-center gap-x-1.5 flex-1 min-w-0 md:justify-center">
+              {mounted && (
+                <span 
+                  className="md:hidden font-sans font-bold text-sm sm:text-base transition-colors select-none shrink-0" 
+                  style={{ color: 'var(--custom-dash-text, inherit)' }}
+                >
+                  Palboard
+                </span>
+              )}
+              <h1 className="text-xs sm:text-sm md:text-xl font-semibold text-zinc-900 dark:text-zinc-50 tracking-tight shrink min-w-0 truncate text-left md:text-center">
+                {name}&apos;s Dashboard
+              </h1>
+              <button
+                onClick={() => setIsEditing(true)}
+                className="hidden md:block opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 p-1 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 shrink-0"
+                aria-label="Edit name"
               >
-                Palboard
-              </span>
-            )}
-            <h1 className="text-lg md:text-xl font-semibold text-zinc-900 dark:text-zinc-50 tracking-tight text-center w-full truncate">
-              {name}&apos;s Dashboard
-            </h1>
-            <button
-              onClick={() => setIsEditing(true)}
-              className="absolute right-12 md:right-0 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 p-1 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800"
-              aria-label="Edit name"
-            >
-              <Edit2 size={14} />
-            </button>
-            <div className="absolute right-0 flex items-center md:hidden">
-               <button 
-                  onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="flex items-center justify-center p-1.5 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                <Edit2 size={14} />
+              </button>
+            </div>
+
+            <div className="flex items-center shrink-0 md:hidden ml-3 gap-2">
+               <button
+                 onClick={() => setIsEditing(true)}
+                 className="opacity-100 transition-opacity text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 p-1 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 shrink-0"
+                 aria-label="Edit name"
                >
+                 <Edit2 size={14} />
+               </button>
+               <div className="relative">
+                 <button 
+                    onClick={() => setDropdownOpen(!dropdownOpen)}
+                    className="flex items-center justify-center p-1.5 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors shrink-0"
+                 >
                   <UserIcon size={16} />
                </button>
                {dropdownOpen && (
                  <>
                    <div className="fixed inset-0 z-40" onClick={() => setDropdownOpen(false)} />
-                   <div className="absolute top-10 right-0 z-50 w-48 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-lg flex flex-col p-1 animate-in fade-in zoom-in-95 duration-200">
+                    <div className="absolute top-10 right-0 z-50 w-48 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-lg flex flex-col p-1 animate-in fade-in zoom-in-95 duration-200">
                       <Link 
                         href="/settings" 
                         onClick={() => setDropdownOpen(false)}
@@ -138,9 +149,10 @@ export function Header({ initialName }: HeaderProps) {
                       >
                          <LogOut size={16} /> Log Out
                       </button>
-                   </div>
+                    </div>
                  </>
                )}
+               </div>
             </div>
           </>
         )}
