@@ -207,10 +207,10 @@ export default function SettingsPage() {
                )}
              </div>
 
-             <div className="h-px bg-zinc-200 dark:bg-zinc-800 w-full" />
+             <div className="hidden md:block h-px bg-zinc-200 dark:bg-zinc-800 w-full" />
 
              {/* Sidebar Color Selection */}
-             <div className="flex flex-col gap-4">
+             <div className="hidden md:flex flex-col gap-4">
                <div className="flex flex-col gap-1">
                  <h3 className="font-semibold flex items-center gap-2" style={{ color: 'var(--custom-dash-text)' }}>
                    <SidebarIcon size={18} /> Sidebar Theme

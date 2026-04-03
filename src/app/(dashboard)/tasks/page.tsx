@@ -502,10 +502,10 @@ export default function TasksPage() {
               
               {/* Subject Row */}
               <div 
-                className="flex items-center justify-between p-4 transition-colors hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30 group"
+                className="flex items-center justify-between p-4 transition-colors hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30 group w-full"
               >
-                <div className="flex flex-col flex-1">
-                  <div className="flex items-center gap-3 cursor-text">
+                <div className="flex flex-col flex-1 min-w-0 pr-4">
+                  <div className="flex items-center gap-3 cursor-text min-w-0">
                     <button 
                       onClick={(e) => toggleExpand(subject.id, e)}
                       className={`p-1 rounded text-zinc-400 hover:text-zinc-700 hover:bg-zinc-200 dark:hover:text-zinc-200 dark:hover:bg-zinc-800 transition-colors ${!hasSubtopics && 'opacity-30'}`}
@@ -527,7 +527,7 @@ export default function TasksPage() {
                     ) : (
                       <span 
                         onClick={(e) => { e.stopPropagation(); setEditingTitleFor({ id: subject.id, type: "subject", currentTitle: subject.title }); }} 
-                        className="font-semibold text-zinc-900 dark:text-zinc-50 cursor-text flex-1 hover:bg-zinc-100 dark:hover:bg-zinc-900/80 rounded px-1 -ml-1 transition-colors"
+                        className="font-semibold text-zinc-900 dark:text-zinc-50 cursor-text flex-1 hover:bg-zinc-100 dark:hover:bg-zinc-900/80 rounded px-1 -ml-1 transition-colors truncate block"
                       >
                         {subject.title}
                       </span>
@@ -551,7 +551,7 @@ export default function TasksPage() {
                   )}
                 </div>
 
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-3 md:gap-6 flex-shrink-0">
                   {hasSubtopics ? (
                     <div className="flex items-center gap-3 w-48">
                       <div className="flex-1 h-2 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
@@ -617,10 +617,10 @@ export default function TasksPage() {
                 <div className="bg-zinc-50/50 dark:bg-zinc-900/20 border-t border-zinc-100 dark:border-zinc-800/50 px-4 py-2">
                   <div className="ml-10 flex flex-col gap-1 py-2">
                     {subject.subtopics.map((sub) => (
-                      <div key={sub.id} className="flex items-center justify-between py-2 group/sub">
+                      <div key={sub.id} className="flex items-center justify-between py-2 group/sub w-full">
                         
-                        <div className="flex flex-col flex-1">
-                          <div className="flex items-center gap-3">
+                        <div className="flex flex-col flex-1 min-w-0 pr-4">
+                          <div className="flex items-center gap-3 min-w-0">
                             {editingTitleFor?.id === sub.id && editingTitleFor?.type === "subtopic" ? (
                                <input
                                  autoFocus
@@ -636,7 +636,7 @@ export default function TasksPage() {
                             ) : (
                               <span 
                                 onClick={(e) => { e.stopPropagation(); setEditingTitleFor({ id: sub.id, type: "subtopic", currentTitle: sub.title }); }}
-                                className="text-sm font-medium text-zinc-700 dark:text-zinc-300 cursor-text hover:bg-zinc-100 dark:hover:bg-zinc-800/50 rounded px-1 -ml-1 transition-colors"
+                                className="text-sm font-medium text-zinc-700 dark:text-zinc-300 cursor-text hover:bg-zinc-100 dark:hover:bg-zinc-800/50 rounded px-1 -ml-1 transition-colors truncate block"
                               >
                                 {sub.title}
                               </span>
@@ -660,7 +660,7 @@ export default function TasksPage() {
                           )}
                         </div>
 
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
                           <StatusPill status={sub.status} onClick={() => toggleSubtopicStatus(subject.id, sub.id, sub.status)} />
                           <div className="w-28 flex justify-end">
                             <DateDisplay 

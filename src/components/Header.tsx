@@ -99,7 +99,7 @@ export function Header({ initialName }: HeaderProps) {
                 Palboard
               </span>
             )}
-            <h1 className="text-base font-semibold text-zinc-900 dark:text-zinc-50 tracking-tight text-center w-full opacity-0 md:opacity-100">
+            <h1 className="text-lg md:text-xl font-semibold text-zinc-900 dark:text-zinc-50 tracking-tight text-center w-full truncate">
               {name}&apos;s Dashboard
             </h1>
             <button
