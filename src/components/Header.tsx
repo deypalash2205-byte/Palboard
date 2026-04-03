@@ -100,7 +100,7 @@ export function Header({ initialName }: HeaderProps) {
                   Palboard
                 </span>
               )}
-              <h1 className="text-xs sm:text-sm md:text-xl font-semibold text-zinc-900 dark:text-zinc-50 tracking-tight shrink min-w-0 truncate text-left md:text-center">
+              <h1 className="hidden md:block text-xs sm:text-sm md:text-xl font-semibold text-zinc-900 dark:text-zinc-50 tracking-tight shrink min-w-0 truncate text-left md:text-center">
                 {name}&apos;s Dashboard
               </h1>
               <button

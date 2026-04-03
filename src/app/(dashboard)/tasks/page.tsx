@@ -502,10 +502,10 @@ export default function TasksPage() {
               
               {/* Subject Row */}
               <div 
-                className="flex items-center justify-between p-4 transition-colors hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30 group w-full"
+                className="flex flex-col md:flex-row md:items-center items-start gap-3 p-4 transition-colors hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30 group w-full"
               >
-                <div className="flex flex-col flex-1 min-w-0 pr-4">
-                  <div className="flex items-center gap-3 cursor-text min-w-0">
+                <div className="flex flex-col flex-1 min-w-0 md:pr-4 w-full">
+                  <div className="flex items-center gap-3 cursor-text min-w-0 w-full">
                     <button 
                       onClick={(e) => toggleExpand(subject.id, e)}
                       className={`p-1 rounded text-zinc-400 hover:text-zinc-700 hover:bg-zinc-200 dark:hover:text-zinc-200 dark:hover:bg-zinc-800 transition-colors ${!hasSubtopics && 'opacity-30'}`}
@@ -551,7 +551,7 @@ export default function TasksPage() {
                   )}
                 </div>
 
-                <div className="flex items-center gap-3 md:gap-6 flex-shrink-0">
+                <div className="flex flex-wrap items-center gap-2 md:gap-6 flex-shrink-0">
                   {hasSubtopics ? (
                     <div className="flex items-center gap-3 w-48">
                       <div className="flex-1 h-2 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
@@ -617,10 +617,10 @@ export default function TasksPage() {
                 <div className="bg-zinc-50/50 dark:bg-zinc-900/20 border-t border-zinc-100 dark:border-zinc-800/50 px-4 py-2">
                   <div className="ml-10 flex flex-col gap-1 py-2">
                     {subject.subtopics.map((sub) => (
-                      <div key={sub.id} className="flex items-center justify-between py-2 group/sub w-full">
+                      <div key={sub.id} className="flex flex-col md:flex-row md:items-center items-start gap-3 py-2 group/sub w-full">
                         
-                        <div className="flex flex-col flex-1 min-w-0 pr-4">
-                          <div className="flex items-center gap-3 min-w-0">
+                        <div className="flex flex-col flex-1 min-w-0 md:pr-4 w-full">
+                          <div className="flex items-center gap-3 min-w-0 w-full">
                             {editingTitleFor?.id === sub.id && editingTitleFor?.type === "subtopic" ? (
                                <input
                                  autoFocus
@@ -660,7 +660,7 @@ export default function TasksPage() {
                           )}
                         </div>
 
-                        <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
+                        <div className="flex flex-wrap items-center gap-2 md:gap-4 flex-shrink-0">
                           <StatusPill status={sub.status} onClick={() => toggleSubtopicStatus(subject.id, sub.id, sub.status)} />
                           <div className="w-28 flex justify-end">
                             <DateDisplay 
