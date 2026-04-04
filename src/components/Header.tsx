@@ -91,7 +91,7 @@ export function Header({ initialName }: HeaderProps) {
           </div>
         ) : (
           <>
-            <div className="flex items-center gap-x-1.5 flex-1 min-w-0 md:justify-center">
+            <div className="flex items-center gap-2 flex-1 min-w-0 md:justify-center">
               {mounted && (
                 <span 
                   className="md:hidden font-sans font-bold text-sm sm:text-base transition-colors select-none shrink-0" 
@@ -100,7 +100,7 @@ export function Header({ initialName }: HeaderProps) {
                   Palboard
                 </span>
               )}
-              <h1 className="hidden md:block text-xs sm:text-sm md:text-xl font-semibold text-zinc-900 dark:text-zinc-50 tracking-tight shrink min-w-0 truncate text-left md:text-center">
+              <h1 className="text-xs text-muted-foreground truncate max-w-[100px] sm:max-w-[150px] md:max-w-none md:text-xl md:font-semibold md:text-zinc-900 md:dark:text-zinc-50 md:tracking-tight shrink min-w-0 text-left md:text-center">
                 {name}&apos;s Dashboard
               </h1>
               <button

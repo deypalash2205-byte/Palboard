@@ -286,20 +286,12 @@ export default function MarksPage() {
                              <span>Score (/20)</span>
                         </div>
                         {midTerms.map(mark => (
-                            <div key={mark.id} className="group relative flex items-center justify-between theme-card border border-white/5 dark:border-black/10 rounded-lg p-3 shadow-sm transition-colors hover:brightness-105">
-                                {/* Delete Overlay */}
-                                <button 
-                                    onClick={() => handleDeleteMark(sem.id, mark.id)}
-                                    className="absolute -left-8 opacity-0 group-hover:opacity-100 p-1.5 rounded-md text-zinc-400 hover:text-red-600 hover:bg-red-50 dark:hover:text-red-400 dark:hover:bg-red-950/30 transition-all"
-                                >
-                                    <Trash2 size={16} />
-                                </button>
-
+                            <div key={mark.id} className="group relative flex items-center justify-between theme-card border border-white/5 dark:border-black/10 rounded-lg p-3 shadow-sm transition-colors hover:brightness-105 gap-3">
                                 {/* Subject Name Edit */}
                                 {editingMark?.id === mark.id && editingMark.field === 'subject_name' ? (
                                     <input
                                         autoFocus
-                                        className="text-sm font-medium text-zinc-900 dark:text-zinc-100 bg-transparent border-none outline-none flex-1"
+                                        className="text-sm font-medium text-zinc-900 dark:text-zinc-100 bg-transparent border-none outline-none flex-1 min-w-0"
                                         value={editingMark.value}
                                         onChange={e => setEditingMark({ ...editingMark, value: e.target.value })}
                                         onBlur={() => handleUpdateMark(sem.id, mark)}
@@ -311,37 +303,47 @@ export default function MarksPage() {
                                 ) : (
                                     <span 
                                         onClick={() => setEditingMark({ id: mark.id, field: 'subject_name', value: mark.subject_name })}
-                                        className="text-sm font-medium cursor-text hover:bg-black/5 dark:hover:bg-white/5 px-1 -ml-1 rounded transition-colors flex-1"
+                                        className="text-sm font-medium cursor-text hover:bg-black/5 dark:hover:bg-white/5 px-1 -ml-1 rounded transition-colors flex-1 truncate"
                                         style={{ color: 'var(--custom-dash-text)' }}
                                     >
                                         {mark.subject_name}
                                     </span>
                                 )}
 
-                                {/* Score Edit */}
-                                {editingMark?.id === mark.id && editingMark.field === 'score' ? (
-                                    <input
-                                        autoFocus
-                                        type="number"
-                                        max="20"
-                                        className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 bg-transparent border-none outline-none w-12 text-right"
-                                        value={editingMark.value}
-                                        onChange={e => setEditingMark({ ...editingMark, value: e.target.value })}
-                                        onBlur={() => handleUpdateMark(sem.id, mark)}
-                                        onKeyDown={e => {
-                                            if (e.key === "Enter") handleUpdateMark(sem.id, mark)
-                                            if (e.key === "Escape") setEditingMark(null)
-                                        }}
-                                    />
-                                ) : (
-                                    <span 
-                                        onClick={() => setEditingMark({ id: mark.id, field: 'score', value: mark.score.toString() })}
-                                        className="text-sm font-semibold cursor-text hover:bg-black/5 dark:hover:bg-white/5 px-1 -mr-1 rounded transition-colors"
-                                        style={{ color: 'var(--custom-dash-text)' }}
+                                <div className="flex items-center gap-3 shrink-0">
+                                    {/* Score Edit */}
+                                    {editingMark?.id === mark.id && editingMark.field === 'score' ? (
+                                        <input
+                                            autoFocus
+                                            type="number"
+                                            max="20"
+                                            className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 bg-transparent border-none outline-none w-12 text-right"
+                                            value={editingMark.value}
+                                            onChange={e => setEditingMark({ ...editingMark, value: e.target.value })}
+                                            onBlur={() => handleUpdateMark(sem.id, mark)}
+                                            onKeyDown={e => {
+                                                if (e.key === "Enter") handleUpdateMark(sem.id, mark)
+                                                if (e.key === "Escape") setEditingMark(null)
+                                            }}
+                                        />
+                                    ) : (
+                                        <span 
+                                            onClick={() => setEditingMark({ id: mark.id, field: 'score', value: mark.score.toString() })}
+                                            className="text-sm font-semibold cursor-text hover:bg-black/5 dark:hover:bg-white/5 px-1 rounded transition-colors"
+                                            style={{ color: 'var(--custom-dash-text)' }}
+                                        >
+                                            {mark.score}
+                                        </span>
+                                    )}
+
+                                    {/* Delete Button */}
+                                    <button 
+                                        onClick={() => handleDeleteMark(sem.id, mark.id)}
+                                        className="opacity-100 md:opacity-0 group-hover:opacity-100 p-1.5 rounded-md text-zinc-400 hover:text-red-600 hover:bg-red-50 dark:hover:text-red-400 dark:hover:bg-red-950/30 transition-all"
                                     >
-                                        {mark.score}
-                                    </span>
-                                )}
+                                        <Trash2 size={16} />
+                                    </button>
+                                </div>
                             </div>
                         ))}
                         
@@ -388,20 +390,12 @@ export default function MarksPage() {
                              <span>Score (/50)</span>
                         </div>
                         {endTerms.map(mark => (
-                            <div key={mark.id} className="group relative flex items-center justify-between theme-card border border-white/5 dark:border-black/10 rounded-lg p-3 shadow-sm transition-colors hover:brightness-105">
-                                {/* Delete Overlay */}
-                                <button 
-                                    onClick={() => handleDeleteMark(sem.id, mark.id)}
-                                    className="absolute -left-8 opacity-0 group-hover:opacity-100 p-1.5 rounded-md text-zinc-400 hover:text-red-600 hover:bg-red-50 dark:hover:text-red-400 dark:hover:bg-red-950/30 transition-all"
-                                >
-                                    <Trash2 size={16} />
-                                </button>
-
+                            <div key={mark.id} className="group relative flex items-center justify-between theme-card border border-white/5 dark:border-black/10 rounded-lg p-3 shadow-sm transition-colors hover:brightness-105 gap-3">
                                 {/* Subject Name Edit */}
                                 {editingMark?.id === mark.id && editingMark.field === 'subject_name' ? (
                                     <input
                                         autoFocus
-                                        className="text-sm font-medium text-zinc-900 dark:text-zinc-100 bg-transparent border-none outline-none flex-1"
+                                        className="text-sm font-medium text-zinc-900 dark:text-zinc-100 bg-transparent border-none outline-none flex-1 min-w-0"
                                         value={editingMark.value}
                                         onChange={e => setEditingMark({ ...editingMark, value: e.target.value })}
                                         onBlur={() => handleUpdateMark(sem.id, mark)}
@@ -413,37 +407,47 @@ export default function MarksPage() {
                                 ) : (
                                     <span 
                                         onClick={() => setEditingMark({ id: mark.id, field: 'subject_name', value: mark.subject_name })}
-                                        className="text-sm font-medium cursor-text hover:bg-black/5 dark:hover:bg-white/5 px-1 -ml-1 rounded transition-colors flex-1"
+                                        className="text-sm font-medium cursor-text hover:bg-black/5 dark:hover:bg-white/5 px-1 -ml-1 rounded transition-colors flex-1 truncate"
                                         style={{ color: 'var(--custom-dash-text)' }}
                                     >
                                         {mark.subject_name}
                                     </span>
                                 )}
 
-                                {/* Score Edit */}
-                                {editingMark?.id === mark.id && editingMark.field === 'score' ? (
-                                    <input
-                                        autoFocus
-                                        type="number"
-                                        max="50"
-                                        className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 bg-transparent border-none outline-none w-12 text-right"
-                                        value={editingMark.value}
-                                        onChange={e => setEditingMark({ ...editingMark, value: e.target.value })}
-                                        onBlur={() => handleUpdateMark(sem.id, mark)}
-                                        onKeyDown={e => {
-                                            if (e.key === "Enter") handleUpdateMark(sem.id, mark)
-                                            if (e.key === "Escape") setEditingMark(null)
-                                        }}
-                                    />
-                                ) : (
-                                    <span 
-                                        onClick={() => setEditingMark({ id: mark.id, field: 'score', value: mark.score.toString() })}
-                                        className="text-sm font-semibold cursor-text hover:bg-black/5 dark:hover:bg-white/5 px-1 -mr-1 rounded transition-colors"
-                                        style={{ color: 'var(--custom-dash-text)' }}
+                                <div className="flex items-center gap-3 shrink-0">
+                                    {/* Score Edit */}
+                                    {editingMark?.id === mark.id && editingMark.field === 'score' ? (
+                                        <input
+                                            autoFocus
+                                            type="number"
+                                            max="50"
+                                            className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 bg-transparent border-none outline-none w-12 text-right"
+                                            value={editingMark.value}
+                                            onChange={e => setEditingMark({ ...editingMark, value: e.target.value })}
+                                            onBlur={() => handleUpdateMark(sem.id, mark)}
+                                            onKeyDown={e => {
+                                                if (e.key === "Enter") handleUpdateMark(sem.id, mark)
+                                                if (e.key === "Escape") setEditingMark(null)
+                                            }}
+                                        />
+                                    ) : (
+                                        <span 
+                                            onClick={() => setEditingMark({ id: mark.id, field: 'score', value: mark.score.toString() })}
+                                            className="text-sm font-semibold cursor-text hover:bg-black/5 dark:hover:bg-white/5 px-1 rounded transition-colors"
+                                            style={{ color: 'var(--custom-dash-text)' }}
+                                        >
+                                            {mark.score}
+                                        </span>
+                                    )}
+
+                                    {/* Delete Button */}
+                                    <button 
+                                        onClick={() => handleDeleteMark(sem.id, mark.id)}
+                                        className="opacity-100 md:opacity-0 group-hover:opacity-100 p-1.5 rounded-md text-zinc-400 hover:text-red-600 hover:bg-red-50 dark:hover:text-red-400 dark:hover:bg-red-950/30 transition-all"
                                     >
-                                        {mark.score}
-                                    </span>
-                                )}
+                                        <Trash2 size={16} />
+                                    </button>
+                                </div>
                             </div>
                         ))}
 
